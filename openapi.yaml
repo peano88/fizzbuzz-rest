@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+  title: fizz buzz rest server
+  description: allows fizz-buzz-alike sequence creation and collection of statistics
+  contact:
+    name: peano88
+    url: github.com/peano88/fizzbuzz_rest
+  license:
+    name: MIT
+  version: 0.0.0
+paths:
+  /fizzbuzz:
+    get:
+      description: create a fizz-buzz-alike sequence. Use query parameters to create a `1..limit` sequence where each item will be one of the following; 1. `str1` if the number is a multiple of `int1`; 2. `str2` if the number is a multiple of `int2`; 3. `str1str2` if the number is a multiple of both `int1` and `int2`. 4. the number itself (as string) otherwise. If the provided `limit` is greater than 65536, than the result sequence is paginated i.e. another request is needed to complete the sequence. The link for this further request is provided as output of the first.
+      parameters:
+        - $ref: '#/components/parameters/fizz-like-num'
+        - $ref: '#/components/parameters/buzz-like-num'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/start'
+        - $ref: '#/components/parameters/fizz-like-str'
+        - $ref: '#/components/parameters/buzz-like-str'
+      responses:
+        '200':
+          description: the fizz buzz sequence
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fizz-buzz-response'
+        '400':
+          description: error with query parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: application internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example: {
+                "err_type": "/fizzbuzz/errors/json", 
+                "title": "json marshaling issue",
+                "status": "500",
+                "instance": "87t4ddswtgasdgsaws"
+              }    
+  /statistics:
+    get:
+      description: return which set of input parameters is the most requested. If more than one set have the same number of hits, than the sets are ordered with reserved lexicographical order and the first one is returned. If no previous sequence were generated the response will be a 503 one. Query parameter `start` has no influence on the statistics.
+      responses:
+        '200':
+          description: input parameters and hits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/statistic-hit'
+        '500':
+          description: application internal error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example: {
+                "err_type": "/fizzbuzz/errors/json", 
+                "title": "json marshaling issue",
+                "status": "500",
+                "instance": "87t4ddswtgasdgsaws"
+              }
+        '503':
+          description: statistics not available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example: {
+                "err_type": "/fizzbuzz/errors/stats", 
+                "title": "no previous request available",
+                "status": "503",
+                "instance": "87t4ddswtgasdgsaws"
+              }
+                
+components:
+  schemas:
+    fizz-buzz-response:
+      type: object
+      required:
+        - sequence
+      properties:
+        sequence: 
+          type: array
+          example: '["1", "2", "Fizz", "4", "Buzz"]'
+          items: {
+            $ref: '#/components/schemas/fizz-buzz-sequence-item'  
+          }
+        next:
+          type: string
+          format: uri
+          description: link to the next paginated result
+          example: 'http://localhost/api/v1/fizzbuzz?int1=3&int2=5&top=128000&start=65537&str1=Fizz&str2=Buzz'
+    fizz-buzz-sequence-item:
+      type: string
+      description: a single string of the fizz-buzz-alike sequence
+      example: ['1', 'Fizz', 'Buzz', 'FizzBuzz' ]
+    statistic-hit:
+      type: object
+      required:
+        - parameters
+        - hits
+      properties:
+        parameters:
+            $ref: '#/components/schemas/input-parameters'
+        hits:
+          type: integer
+          format: int64
+          description: number of times that a set of input parameters has been requested
+          example: 368
+    input-parameters:
+      type: object
+      required:
+        - int1
+        - int2
+        - limit
+        - str1
+        - str2
+      properties:
+        int1:
+          type: integer
+          format: int8
+          example: 3
+        int2:
+          type: integer
+          format: int8
+          example: 5
+        limit:
+          type: integer
+          format: int8
+          example: 20
+        str1:
+          type: string
+          example: Fizz
+        str2:
+          type: string
+          example: Buzz
+    error:
+      type: object
+      required:
+        - err_type
+        - title
+      properties:
+        err_type:
+          type: string
+          description: application error type identifier
+          example: '/fizzbuzz/errors/no_int1'
+        title:
+          type: string
+          description: brief, human-readable message about the error
+          example: wrong set of input parameters
+        status:
+          type: string
+          description: http error code returned with the error
+          example: "400"
+        detail:
+          type: string
+          description: additional details, if available
+          example: int1 is a mandatory parameter, its value should be between 0 (excluding) and 9223372036854775807    
+        instance:
+          type: string
+          description: application identifier of the error
+          example: 8tgtredgfggtertteg
+
+  parameters:
+    fizz-like-num:
+      name: int1
+      in: query
+      required: true
+      description: every multiple of it will be changed to either `str1` or `str1str2`. Can't be 0 or lower
+      schema:
+        type: integer
+    buzz-like-num:
+      name: int2
+      in: query
+      required: true
+      description: every multiple of it will be changed to either `str2` or `str1str2`. Can't be 0 or lower
+      schema:
+        type: integer
+    start:
+      name: start
+      in: query
+      required: false
+      description: starting point of the fizz-buzz-alike sequence. if not provided, the sequence will start with "1"
+      schema:
+        type: integer
+    limit:
+      name: limit
+      in: query
+      required: true
+      description: inclusing upper limit for the fizz-buzz-alike sequence. If lower or equal than 0, the sequence will be generated as an empty array
+      schema:
+        type: integer
+    fizz-like-str:
+      name: str1
+      in: query
+      required: true
+      description: string to use for every multiple of `int1`
+      schema:
+        type: string
+    buzz-like-str:
+      name: str2
+      in: query
+      required: true
+      description: string to use for every multiple of `int2`
+      schema:
+        type: string

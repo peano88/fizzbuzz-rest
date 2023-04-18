@@ -1,0 +1,5 @@
+.direnv
+
+cover.out
+main
+cmd/fizzbuzz-rest/main
