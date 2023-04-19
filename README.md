@@ -38,7 +38,7 @@ The application uses a [12-factor](https://12factor.net/) approach on the config
 | Variable | Usage | Allowed values |
 | --- | --- | --- |
 | FIZZBUZZ_LOG_LEVEL | Set the log level of the application; defaulted to `info` | `panic`, `error`, `warn`, `info`, `debug`, `trace` | 
-| FIZZBUZZ_TLS | The server will listen for TLS connection | same string values compatibles with go `strconv.ParseBool` |
+| FIZZBUZZ_TLS_ENABLE | The server will listen for TLS connection | same string values compatibles with go `strconv.ParseBool` |
 | FIZZBUZZ_TLS_INSECURE | Allows insecure connection, defaulted to `false` | same string values compatibles with go `strconv.ParseBool` |
 | FIZZBUZZ_CLIENT_AUTH_TYPE | Force provided client authentication type | same as `tls.Config` |
 | FIZZBUZZ_TLS_CERT | Path of the server certificate for TLS. Mandatory if TLS is enabled | |

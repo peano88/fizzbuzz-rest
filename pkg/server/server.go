@@ -98,7 +98,6 @@ func (fbs *FizzBuzzServer) Configure() (*http.Server, error) {
 			ClientAuth:         tls.ClientAuthType(clientAuthType),
 			ClientCAs:          certPool,
 			InsecureSkipVerify: insecure,
-			CipherSuites:       []uint16{},
 			MinVersion:         tls.VersionTLS12,
 		}
 	}

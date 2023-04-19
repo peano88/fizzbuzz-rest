@@ -41,6 +41,7 @@ func main() {
 
 	if utils.IsTLSEnabled(server.TLSEnvVar) {
 		go func() {
+			log.Println("Serving TLS connections")
 			if err := s.ListenAndServeTLS(os.Getenv(certPathEnvVar), os.Getenv(keyPathEnvVar)); err != nil && !errors.Is(err, http.ErrServerClosed) {
 				errChan <- err
 			}
