@@ -23,29 +23,30 @@ const (
 	logLevelEnvVar       = "FIZZBUZZ_LOG_LEVEL"
 )
 
+// FizzBuzzStats is the interface representing what is expected by the statistics component
+//
 //go:generate mockery --name FizzBuzzStats
-//FizzBuzzStats is the interface representing what is expected by the statistics component
 type FizzBuzzStats interface {
-    // Increment receives the input parameters so that they can be registered
+	// Increment receives the input parameters so that they can be registered
 	Increment(ctx context.Context, n, m, top int, fizz, buzz string) error
-    // Stats should return the model.FizzBuzzStatisticsOutput representing the #1 hit for the GET /fizzbuzz
-    // error otherwise
+	// Stats should return the model.FizzBuzzStatisticsOutput representing the #1 hit for the GET /fizzbuzz
+	// error otherwise
 	Stats(ctx context.Context) (model.FizzBuzzStatisticsOutput, error)
 }
 
 // FizzBuzzServer is the structure defining the HTTP requests handling and middleware
 type FizzBuzzServer struct {
-    // instance of FizzBuzzStats
+	// instance of FizzBuzzStats
 	Stats FizzBuzzStats
 }
 
 // Configure will return a configured *http.Server which can be used to serve requests
 // if environment variable FIZZBUZZ_TLS_ENABLE is set to true, than the server will be configured to be used
-// with ListenAndServeTLS method. in this case, the TLS configuration will allow insecure connection when 
+// with ListenAndServeTLS method. in this case, the TLS configuration will allow insecure connection when
 // FIZZBUZZ_TLS_INSECURE is set to true; the client authentification type can be changed using environment variable
 // FIZZBUZZ_CLIENT_AUTH_TYPE
 // Standard variable SSL_CERT_FILE and SSL_CERT_DIR can be used to change the default loading of system CAs.
-// The serve will create a unique identifier for each incoming request, will log each request processing based on 
+// The serve will create a unique identifier for each incoming request, will log each request processing based on
 // variable FIZZBUZZ_LOG_LEVEL and will automatically recover from panics
 func (fbs *FizzBuzzServer) Configure() (*http.Server, error) {
 	logger := httplog.NewLogger("fizzbuzz-rest", httplog.Options{

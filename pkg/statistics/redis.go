@@ -31,9 +31,9 @@ type FizzBuzzStatsRedis struct {
 }
 
 // NewFizzBuzzStatsRedis instances a new FizzBuzzStatsRedis, which will automatically handles reconnection
-// to the redis DB. the address can be set using environment variable REDIS_DB_ADDRESS as well as user login 
+// to the redis DB. the address can be set using environment variable REDIS_DB_ADDRESS as well as user login
 // via variables REDIS_DB_USERNAME, REDIS_DB_PASSWORD. The db instance to use is not provide by default and can
-// be changed via REDIS_DB_ID. If the connection needs a TLS protection, than variable REDIS_DB_TLS needs to be set to 
+// be changed via REDIS_DB_ID. If the connection needs a TLS protection, than variable REDIS_DB_TLS needs to be set to
 // true. When using TLS the configuration can be tweaked using REDIS_DB_TLS_INSECURE, REDIS_DB_TLS_CERTIFICATE_PATH,
 // REDIS_DB_TLS_KEY_PATH which will allow for an insecure connection and specific client certificate+key.
 // Standard variable SSL_CERT_FILE and SSL_CERT_DIR can be used to change the default loading of system CAs.

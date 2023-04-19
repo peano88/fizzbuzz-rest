@@ -9,7 +9,7 @@ import (
 	"github.com/peano88/fizzbuzz-rest/pkg/validation"
 )
 
-// ValidationMiddleware is an HTTP middleware which runs a set of validation on the 
+// ValidationMiddleware is an HTTP middleware which runs a set of validation on the
 // query parameter of the request. It forwards a modified context.Context to the next handler
 // obtained by inserting the validated set of input parameters
 func (fbs *FizzBuzzServer) ValidationMiddleware(next http.Handler) http.Handler {
@@ -28,7 +28,7 @@ func (fbs *FizzBuzzServer) ValidationMiddleware(next http.Handler) http.Handler 
 }
 
 // ToStatisticsMiddleware is an HTTP middleware sending the set of input parameters to the statistics component.
-// the set is retrieved via the request context.Context. If an error arises, then the error is logged, but the 
+// the set is retrieved via the request context.Context. If an error arises, then the error is logged, but the
 // next handler is called anyway
 func (fbs *FizzBuzzServer) ToStatisticsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(rw http.ResponseWriter, r *http.Request) {

@@ -15,14 +15,14 @@ import (
 )
 
 const (
-    // ApplicationError type for json-marshaling error
-	AppErrorTypeJSON    = "/fizzbuzz/errors/json"
-    // ApplicationError type for parsing-related error
+	// ApplicationError type for json-marshaling error
+	AppErrorTypeJSON = "/fizzbuzz/errors/json"
+	// ApplicationError type for parsing-related error
 	AppErrorTypeParsing = "/fizzbuzz/errors/parse"
-    // ApplicationError type for statistics availability error
-	AppErrorTypeStats   = "/fizzbuzz/errors/stats"
-    // ApplicationError type for error generated during validation of the input parameters
-	AppErrorTypeInput   = "/fizzbuzz/errors/input"
+	// ApplicationError type for statistics availability error
+	AppErrorTypeStats = "/fizzbuzz/errors/stats"
+	// ApplicationError type for error generated during validation of the input parameters
+	AppErrorTypeInput = "/fizzbuzz/errors/input"
 )
 
 func jsonApplicationError(rw http.ResponseWriter, r *http.Request) {

@@ -15,7 +15,7 @@ func FizzBuzzInputFromContext(ctx context.Context) model.FizzBuzzInput {
 	return ctx.Value(model.InputKey).(model.FizzBuzzInput)
 }
 
-// FizzBuzzStatisticsOutputFromString splits the s string using the model.Separator and creates the model.FizzBuzzStatisticsOutput 
+// FizzBuzzStatisticsOutputFromString splits the s string using the model.Separator and creates the model.FizzBuzzStatisticsOutput
 // using the separated tokens
 func FizzBuzzStatisticsOutputFromString(s string, hits int64) (model.FizzBuzzStatisticsOutput, error) {
 	tokens := strings.Split(s, model.Separator)

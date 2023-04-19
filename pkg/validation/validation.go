@@ -91,7 +91,7 @@ type Validator struct {
 }
 
 // RunValidations runs the different validations and returns a ValidationError in case of issue
-// if the validation is succesfull a modified context.Context is returned. This context is obtained 
+// if the validation is succesfull a modified context.Context is returned. This context is obtained
 // by adding a model.FizzBuzzInput in the r.Context()
 func (v *Validator) RunValidations(r *http.Request) (context.Context, error) {
 	newContext := r.Context()
