@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/peano88/fizzbazz-rest/pkg/model"
+	"github.com/peano88/fizzbuzz-rest/pkg/model"
 	"github.com/stretchr/testify/assert"
 )
 

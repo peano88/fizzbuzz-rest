@@ -12,8 +12,8 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/httplog"
-	"github.com/peano88/fizzbazz-rest/pkg/model"
-	"github.com/peano88/fizzbazz-rest/pkg/utils"
+	"github.com/peano88/fizzbuzz-rest/pkg/model"
+	"github.com/peano88/fizzbuzz-rest/pkg/utils"
 )
 
 const (

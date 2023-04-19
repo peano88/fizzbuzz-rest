@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/peano88/fizzbazz-rest/pkg/model"
+	"github.com/peano88/fizzbuzz-rest/pkg/model"
 )
 
 // FizzBuzzInputFromContext returns the model.FizzBuzzInput contained in the context.Context.

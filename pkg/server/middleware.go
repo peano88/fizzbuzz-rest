@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/go-chi/httplog"
-	"github.com/peano88/fizzbazz-rest/pkg/utils"
-	"github.com/peano88/fizzbazz-rest/pkg/validation"
+	"github.com/peano88/fizzbuzz-rest/pkg/utils"
+	"github.com/peano88/fizzbuzz-rest/pkg/validation"
 )
 
 // ValidationMiddleware is an HTTP middleware which runs a set of validation on the 

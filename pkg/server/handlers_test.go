@@ -9,9 +9,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/peano88/fizzbazz-rest/pkg/model"
-	"github.com/peano88/fizzbazz-rest/pkg/server/mocks"
-	"github.com/peano88/fizzbazz-rest/pkg/statistics"
+	"github.com/peano88/fizzbuzz-rest/pkg/model"
+	"github.com/peano88/fizzbuzz-rest/pkg/server/mocks"
+	"github.com/peano88/fizzbuzz-rest/pkg/statistics"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

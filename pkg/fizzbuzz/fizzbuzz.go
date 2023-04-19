@@ -3,7 +3,7 @@ package fizzbuzz
 import (
 	"strconv"
 
-	"github.com/peano88/fizzbazz-rest/pkg/model"
+	"github.com/peano88/fizzbuzz-rest/pkg/model"
 )
 
 // Fizzbuzz is a function creating a sequence based on the input

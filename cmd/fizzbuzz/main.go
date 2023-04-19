@@ -9,9 +9,9 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/peano88/fizzbazz-rest/pkg/server"
-	"github.com/peano88/fizzbazz-rest/pkg/statistics"
-	"github.com/peano88/fizzbazz-rest/pkg/utils"
+	"github.com/peano88/fizzbuzz-rest/pkg/server"
+	"github.com/peano88/fizzbuzz-rest/pkg/statistics"
+	"github.com/peano88/fizzbuzz-rest/pkg/utils"
 )
 
 const (

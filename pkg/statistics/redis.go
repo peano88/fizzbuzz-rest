@@ -8,8 +8,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/peano88/fizzbazz-rest/pkg/model"
-	"github.com/peano88/fizzbazz-rest/pkg/utils"
+	"github.com/peano88/fizzbuzz-rest/pkg/model"
+	"github.com/peano88/fizzbuzz-rest/pkg/utils"
 	"github.com/redis/go-redis/v9"
 )
 

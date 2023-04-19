@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/peano88/fizzbazz-rest/pkg/model"
+	"github.com/peano88/fizzbuzz-rest/pkg/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
